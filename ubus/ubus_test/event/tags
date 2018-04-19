@@ -1,0 +1,25 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+UBUS_EVENT_ADD_DEVICE	event_client.c	11;"	d	file:
+UBUS_EVENT_REMOVE_DEVICE	event_client.c	12;"	d	file:
+b	event_server.c	/^static struct blob_buf b;$/;"	v	typeref:struct:blob_buf	file:
+cli_path	event_client.c	/^static const char *cli_path;$/;"	v	file:
+client_ubus_done	event_client.c	/^static void client_ubus_done(void)$/;"	f	file:
+client_ubus_init	event_client.c	/^static int client_ubus_init(const char *path)$/;"	f	file:
+client_ubus_register_events	event_client.c	/^static int client_ubus_register_events()$/;"	f	file:
+ctx	event_client.c	/^static struct ubus_context *ctx = NULL;$/;"	v	typeref:struct:ubus_context	file:
+ctx	event_server.c	/^static struct ubus_context *ctx = NULL;$/;"	v	typeref:struct:ubus_context	file:
+display_ubus_done	event_server.c	/^static void display_ubus_done(void)$/;"	f	file:
+display_ubus_init	event_server.c	/^static int display_ubus_init(const char *path)$/;"	f	file:
+main	event_client.c	/^int main(int argc, char * argv[])$/;"	f
+main	event_server.c	/^int main(int argc, char * argv[])$/;"	f
+server_ubus_send_event	event_server.c	/^static int server_ubus_send_event(void)$/;"	f	file:
+sock_path	event_server.c	/^static const char *sock_path;$/;"	v	file:
+ubus_add_fd	event_client.c	/^static void ubus_add_fd(void)$/;"	f	file:
+ubus_connection_lost	event_client.c	/^static void ubus_connection_lost(struct ubus_context *ctx)$/;"	f	file:
+ubus_probe_device_event	event_client.c	/^static void ubus_probe_device_event(struct ubus_context *ctx, $/;"	f	file:
+ubus_reconn_timer	event_client.c	/^static void ubus_reconn_timer(struct uloop_timeout *timeout)$/;"	f	file:
