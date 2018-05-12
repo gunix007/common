@@ -7,11 +7,12 @@
 
 int main(void)
 {
+    int i;
     int datalen = 0;
     int result = 0;
 	char key[] = "aBcDeFg1";
     char paddedValue = 0;
-	char srcdata[BUFFSIZE] = "mysrcdata1234test";
+	unsigned char srcdata[BUFFSIZE] = "mysrcdata1234test";
 	char ivec[] = "87654321";
 	char ivectemp[] = "87654321";
 
@@ -33,10 +34,6 @@ int main(void)
 	{
         printf("*** Encryption Error ***\n");
 	}
-	else
-	{
-		printf("cryption data: %s\n\n", srcdata);
-    }
 
 	datalen = strlen(srcdata);
 	printf("datalen is: %d\n", datalen);
