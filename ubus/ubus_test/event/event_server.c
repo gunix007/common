@@ -47,7 +47,7 @@ static void display_ubus_done(void)
 	}
 }
 
-int main(int argc, char * argv[])
+int main(int argc, char *argv[])
 {
 	char *path = NULL;
 

@@ -36,6 +36,7 @@ int main(void)
         return errno;
     }
     close(fd);
+    // srcdata[readlen - 1] = 0;
     printf("imse data:\n%s\n", srcdata);
 
     des_setparity(key);
@@ -45,9 +46,10 @@ int main(void)
     paddedValue = 8 - datalen % 8;
 	while (datalen % 8)
 	{
-		// srcdata[datalen++] = 0; // zeropadding
-		srcdata[datalen++] = paddedValue; // pkcs5padding
+		srcdata[datalen++] = 0; // zeropadding
+		//srcdata[datalen++] = paddedValue; // pkcs5padding
     }
+    srcdata[datalen] = 0;
 	printf("datalen is: %d\n", datalen);
 	printf("Encrypted:\n");
 	result = cbc_crypt(key, srcdata, datalen, DES_ENCRYPT | DES_SW, ivectemp);
@@ -55,6 +57,7 @@ int main(void)
 	{
         printf("*** Encryption Error ***\n");
 	}
+    //srcdata[datalen-1] = 0;
 
 	datalen = strlen(srcdata);
 	printf("datalen is: %d\n", datalen);
@@ -62,8 +65,8 @@ int main(void)
     paddedValue = 8 - datalen % 8;
     while (datalen % 8)
     {
-        // srcdata[datalen++] = '\0';
-        srcdata[datalen++] = paddedValue;
+        srcdata[datalen++] = 0;
+        //srcdata[datalen++] = paddedValue;
     }
     printf("datalen is: %d\n", datalen);
 	printf("Decrypted:\n");

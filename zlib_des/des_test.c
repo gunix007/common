@@ -34,6 +34,11 @@ int main(void)
 	{
         printf("*** Encryption Error ***\n");
 	}
+    for (i = 0; i < dadtalen; i++)
+    {
+        printf("%02x", srcdata[i]);
+    }
+    printf("\n");
 
 	datalen = strlen(srcdata);
 	printf("datalen is: %d\n", datalen);
