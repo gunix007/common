@@ -1,0 +1,2 @@
+/opt/arm-2010.09/bin/arm-none-linux-gnueabi-ar cr libblobmsg_json.a  CMakeFiles/blobmsg_json-static.dir/blobmsg_json.c.o
+/opt/arm-2010.09/bin/arm-none-linux-gnueabi-ranlib libblobmsg_json.a

@@ -1,0 +1,10 @@
+/home/gunix/workspace/src/webserver/libubox/examples/CMakeFiles/blobmsg-example.dir
+/home/gunix/workspace/src/webserver/libubox/CMakeFiles/blobmsg_json.dir
+/home/gunix/workspace/src/webserver/libubox/CMakeFiles/blobmsg_json-static.dir
+/home/gunix/workspace/src/webserver/libubox/CMakeFiles/jshn.dir
+/home/gunix/workspace/src/webserver/libubox/CMakeFiles/json_script.dir
+/home/gunix/workspace/src/webserver/libubox/examples/CMakeFiles/json_script-example.dir
+/home/gunix/workspace/src/webserver/libubox/examples/CMakeFiles/runqueue-example.dir
+/home/gunix/workspace/src/webserver/libubox/CMakeFiles/ubox.dir
+/home/gunix/workspace/src/webserver/libubox/CMakeFiles/ubox-static.dir
+/home/gunix/workspace/src/webserver/libubox/examples/CMakeFiles/ustream-example.dir

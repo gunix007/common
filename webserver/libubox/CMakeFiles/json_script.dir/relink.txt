@@ -1,0 +1,1 @@
+/opt/arm-2010.09/bin/arm-none-linux-gnueabi-gcc  -fPIC    -shared -Wl,-soname,libjson_script.so -o CMakeFiles/CMakeRelink.dir/libjson_script.so CMakeFiles/json_script.dir/json_script.c.o  -L/home/gunix/workspace/src/webserver/libubox/../json-c/json_out/lib libubox.so -lrt 

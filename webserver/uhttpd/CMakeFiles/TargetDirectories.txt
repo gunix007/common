@@ -1,0 +1,2 @@
+/home/gunix/workspace/src/webserver/uhttpd/CMakeFiles/uhttpd.dir
+/home/gunix/workspace/src/webserver/uhttpd/CMakeFiles/uhttpd_ubus.dir

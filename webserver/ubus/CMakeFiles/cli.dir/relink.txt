@@ -1,0 +1,1 @@
+/opt/arm-2010.09/bin/arm-none-linux-gnueabi-gcc      CMakeFiles/cli.dir/cli.c.o  -o CMakeFiles/CMakeRelink.dir/ubus  -L/home/gunix/workspace/src/webserver/ubus/../json-c/json_out/lib  -L/home/gunix/workspace/src/webserver/ubus/../libubox/libubox_out/lib  libubus.so -lubox -lblobmsg_json -ljson-c 

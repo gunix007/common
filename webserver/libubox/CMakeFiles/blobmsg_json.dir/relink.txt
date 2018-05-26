@@ -1,0 +1,1 @@
+/opt/arm-2010.09/bin/arm-none-linux-gnueabi-gcc  -fPIC    -shared -Wl,-soname,libblobmsg_json.so -o CMakeFiles/CMakeRelink.dir/libblobmsg_json.so CMakeFiles/blobmsg_json.dir/blobmsg_json.c.o  -L/home/gunix/workspace/src/webserver/libubox/../json-c/json_out/lib libubox.so -ljson-c -lrt 

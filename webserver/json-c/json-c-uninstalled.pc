@@ -1,0 +1,11 @@
+prefix=
+exec_prefix=
+libdir=/home/gunix/workspace/src/webserver/json-c
+includedir=/home/gunix/workspace/src/webserver/json-c
+
+Name: json
+Description: JSON implementation in C
+Version: 0.13.99
+Requires:
+Libs:  -L/home/gunix/workspace/src/webserver/json-c -ljson-c
+Cflags: -I/home/gunix/workspace/src/webserver/json-c

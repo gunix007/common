@@ -1,0 +1,5 @@
+/home/gunix/workspace/src/webserver/ubus/CMakeFiles/cli.dir
+/home/gunix/workspace/src/webserver/ubus/examples/CMakeFiles/client.dir
+/home/gunix/workspace/src/webserver/ubus/examples/CMakeFiles/server.dir
+/home/gunix/workspace/src/webserver/ubus/CMakeFiles/ubus.dir
+/home/gunix/workspace/src/webserver/ubus/CMakeFiles/ubusd.dir

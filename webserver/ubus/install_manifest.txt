@@ -1,0 +1,6 @@
+/home/gunix/workspace/src/webserver/ubus/ubus_out/lib/libubus.so
+/home/gunix/workspace/src/webserver/ubus/ubus_out/bin/ubus
+/home/gunix/workspace/src/webserver/ubus/ubus_out/sbin/ubusd
+/home/gunix/workspace/src/webserver/ubus/ubus_out/include/ubusmsg.h
+/home/gunix/workspace/src/webserver/ubus/ubus_out/include/ubus_common.h
+/home/gunix/workspace/src/webserver/ubus/ubus_out/include/libubus.h

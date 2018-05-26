@@ -1,0 +1,1 @@
+/opt/arm-2010.09/bin/arm-none-linux-gnueabi-gcc      CMakeFiles/jshn.dir/jshn.c.o  -o jshn  -L/home/gunix/workspace/src/webserver/libubox/../json-c/json_out/lib -rdynamic libblobmsg_json.so -ljson-c libubox.so -lrt -Wl,-rpath,/home/gunix/workspace/src/webserver/libubox/../json-c/json_out/lib:/home/gunix/workspace/src/webserver/libubox 
