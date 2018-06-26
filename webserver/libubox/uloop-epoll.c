@@ -23,9 +23,14 @@
 #define EPOLLRDHUP 0x2000
 #endif
 
+/*
+ * 创建 epoll 句柄，监听最大数目为 32；并设置句柄 FD_CLOEXEC 属性；
+ * 对描述符设置了 FD_CLOEXEC，使用 execl 执行的程序里，此描述符被关闭，
+ * 不能再使用它，但是在使用 fork 调用的子进程中，此描述符并不关闭，仍可使用.
+ */
 static int uloop_init_pollfd(void)
 {
-	if (poll_fd >= 0)
+	if (poll_fd >= 0) // 已经初始化
 		return 0;
 
 	poll_fd = epoll_create(32);

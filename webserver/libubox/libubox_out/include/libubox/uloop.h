@@ -68,19 +68,19 @@ struct uloop_fd
 struct uloop_timeout
 {
 	struct list_head list;
-	bool pending;
+	bool pending; // 成功加入链表的标志
 
-	uloop_timeout_handler cb;
-	struct timeval time;
+	uloop_timeout_handler cb; // 回调处理函数
+	struct timeval time; // 超时时间
 };
 
 struct uloop_process
 {
 	struct list_head list;
-	bool pending;
+	bool pending; // 成功加入链表的标志
 
-	uloop_process_handler cb;
-	pid_t pid;
+	uloop_process_handler cb; // 回调处理函数
+	pid_t pid; // fork 出新进程的 id 号
 };
 
 extern bool uloop_cancelled;
@@ -106,10 +106,12 @@ static inline void uloop_end(void)
 
 int uloop_init(void);
 int uloop_run_timeout(int timeout);
+
 static inline int uloop_run(void)
 {
 	return uloop_run_timeout(-1);
 }
+
 void uloop_done(void);
 
 #endif
