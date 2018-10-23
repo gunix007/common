@@ -23,3 +23,10 @@ set hidden
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
+" mapping F5 key to update the tags
+nnoremap <f5> :!ctags -R<CR>
+" mapping for scrolling through the tag lists
+nnoremap <silent> [t :tprevious<CR>
+nnoremap <silent> ]t :tnext<CR>
+
+
