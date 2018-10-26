@@ -19,7 +19,8 @@ set wildmode=longest,list
 
 set hidden
 
-
+" mapping <C-p> and <C-n> to <Up> and <Down> so that they can filter the
+" command-lines history
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
@@ -28,5 +29,15 @@ nnoremap <f5> :!ctags -R<CR>
 " mapping for scrolling through the tag lists
 nnoremap <silent> [t :tprevious<CR>
 nnoremap <silent> ]t :tnext<CR>
+nnoremap <silent> [T :tfirst<CR>
+nnoremap <silent> ]T :tlast<CR>
+" mapping for scrolling through the quickfix lists
+nnoremap <silent> [c :cprevious<CR>
+nnoremap <silent> ]c :cnext<CR>
+nnoremap <silent> [C :cfirst<CR>
+nnoremap <silent> ]C :clast<CR>
 
+autocmd fileType python setlocal makeprg=python3\ %
+autocmd FileType c setlocal makeprg=gcc\ -lm\ -pthread\ -g\ %\ -o\ %<
+autocmd FileType cpp setlocal makeprg=g++\ -lm\ -pthread\ -g\ %\ -o\ %<
 
