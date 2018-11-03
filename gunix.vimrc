@@ -16,7 +16,6 @@ set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 set history=1000
 " Completion mode that similar to bash shell
 set wildmode=longest,list
-
 set hidden
 
 " mapping <C-p> and <C-n> to <Up> and <Down> so that they can filter the
@@ -40,4 +39,16 @@ nnoremap <silent> ]C :clast<CR>
 autocmd fileType python setlocal makeprg=python3\ %
 autocmd FileType c setlocal makeprg=gcc\ -lm\ -pthread\ -g\ %\ -o\ %<
 autocmd FileType cpp setlocal makeprg=g++\ -lm\ -pthread\ -g\ %\ -o\ %<
+
+" customer the grep in vim, ignore some files
+" set wildignore=*.o,*.obj,*~,*.pyc,.git/**,tags,cscope*
+" let &grepprg='grep -nrs --exclude=' . shellescape(&wildignore) . ' $*'
+"
+" need to install ack-grep first, as:
+" sudo apt-get install ack-grep
+" sudo ln -s /usr/bin/ack-grep /usr/local/bin/ack
+set grepprg=ack\ --nogroup\ --column\ $*
+set grepformat=%f:%l:%c:%m
+
+
 
