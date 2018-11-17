@@ -36,18 +36,18 @@ nnoremap <silent> ]c :cnext<CR>
 nnoremap <silent> [C :cfirst<CR>
 nnoremap <silent> ]C :clast<CR>
 
+" customize compile command for different file type
 autocmd fileType python setlocal makeprg=python3\ %
 autocmd FileType c setlocal makeprg=gcc\ -lm\ -pthread\ -g\ %\ -o\ %<
 autocmd FileType cpp setlocal makeprg=g++\ -lm\ -pthread\ -g\ %\ -o\ %<
 
 " customer the grep in vim, ignore some files
-" set wildignore=*.o,*.obj,*~,*.pyc,.git/**,tags,cscope*
-" let &grepprg='grep -nrs --exclude=' . shellescape(&wildignore) . ' $*'
+" set grepprg=grep\ -nrs\ --exclude={*.o,*.patch,*.obj,*~,*.pyc,tags}\ --exclude-dir={.git,.svn}\ $*
 "
 " need to install ack-grep first, as:
 " sudo apt-get install ack-grep
 " sudo ln -s /usr/bin/ack-grep /usr/local/bin/ack
-set grepprg=ack\ --nogroup\ --column\ $*
+set grepprg=ack\ --nogroup\ --column\ $*\ --ignore-file=is:tags\ --ignore-file=ext:patch
 set grepformat=%f:%l:%c:%m
 
 
