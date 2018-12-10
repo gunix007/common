@@ -2,11 +2,14 @@
 set nocompatible
 " Enable filetype detection and filetype plugins/indent
 filetype plugin indent on
+" show a preview of the first match based on the search field
+set incsearch
 " High light search. Same as 'set hls'
 set hlsearch
-" show a preview of the first match based on what has been entered
-" so far into the search field.
-set incsearch
+" shortcut to mute search highlighting
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+" mapping for counting the last pattern
+nnoremap <silent> ,* :%s///gn<CR>
 " Ignore case, while 'set noignorecase' option is case sensitivity
 set ignorecase
 " Display the line number
@@ -22,6 +25,7 @@ set wildmenu
 " Completion mode that similar to bash shell
 set wildmode=list,full
 " set complete-=k complete+=k
+" navigate away from a modified file without first saving it.
 set hidden
 " enable mouse in all modes
 " set mouse=a
@@ -53,6 +57,14 @@ cnoremap <expr> %% getcmdtype( ) == ':' ? expand('%:h').'/' : '%%'
 
 " mapping F5 key to update the tags
 nnoremap <f5> :!ctags -R<CR>
+" automatically execute ctags each time a file is saved
+" autocmd BufWritePost * call system("ctags -R")
+
+" mapping & as :&& to preserves substitute flags in normal mode
+nnoremap & :&&<CR>
+" mapping & as :&& to preserves substitute flags in visual mode
+xnoremap & :&&<CR>
+
 " mapping for scrolling through the buffer lists
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
