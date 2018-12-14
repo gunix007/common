@@ -1,7 +1,16 @@
 " Nocompatible mode, but not the vi compatible mode. Same as 'set nocp'
 set nocompatible
-" Enable filetype detection and filetype plugins/indent
-filetype plugin indent on
+" load indentation rules and plugins according to the detected filetype
+if has("autocmd")
+    filetype plugin indent on
+endif
+" encoding setting
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,gb2312,gbk,gb18030,big5,latin1
+set fileencoding=utf-8
+set termencoding=utf-8
+set langmenu=zh_CN.UTF-8
+set helplang=cn
 " show a preview of the first match based on the search field
 set incsearch
 " High light search. Same as 'set hls'
@@ -28,7 +37,24 @@ set wildmode=list,full
 " navigate away from a modified file without first saving it.
 set hidden
 " enable mouse in all modes
-" set mouse=a
+set mouse=a
+" show (partial) command in status line
+set showcmd
+" show matching brackets
+set showmatch
+" automatically save before commands like :next and :make
+set autowrite
+" highlight the screen line of the cursor
+set cursorline
+" show the line and column number of the cursor position
+set ruler
+" options for the status line
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
+set laststatus=2
+" number of screen lines to use for the command-line
+set cmdheight=2
+" disable the bell for error messages
+set noerrorbells
 
 " set spell
 " Scan spell dictionaries for completion in addition to standard places
@@ -57,8 +83,6 @@ cnoremap <expr> %% getcmdtype( ) == ':' ? expand('%:h').'/' : '%%'
 
 " mapping F5 key to update the tags
 nnoremap <f5> :!ctags -R<CR>
-" automatically execute ctags each time a file is saved
-" autocmd BufWritePost * call system("ctags -R")
 
 " mapping & as :&& to preserves substitute flags in normal mode
 nnoremap & :&&<CR>
@@ -100,5 +124,15 @@ nnoremap <silent> ]C :clast<CR>
 autocmd fileType python setlocal makeprg=python3\ %
 autocmd FileType c setlocal makeprg=gcc\ -lm\ -pthread\ -g\ %\ -o\ %<
 autocmd FileType cpp setlocal makeprg=g++\ -lm\ -pthread\ -g\ %\ -o\ %<
+
+" jump to the last position when reopening a file
+if has("autocmd")
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+" enables syntax highlighting
+if has("syntax")
+    syntax on
+endif
 
 

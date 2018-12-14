@@ -1,232 +1,138 @@
-map <F9> :call SaveInputData()<CR>
-func! SaveInputData()
-	exec "tabnew"
-	exec 'normal "+gP'
-	exec "w! /tmp/input_data"
-endfunc
-
-
-
-
-"colorscheme torte
-"colorscheme murphy
-"colorscheme desert 
-colorscheme elflord
-"colorscheme ron
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 显示相关  
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set shortmess=atI   " 启动的时候不显示那个援助乌干达儿童的提示  
-"winpos 5 5          " 设定窗口位置  
-"set lines=40 columns=155    " 设定窗口大小  
-set go=             " 不要图形按钮  
-"color asmanian2     " 设置背景主题  
-"set guifont=Courier_New:h10:cANSI   " 设置字体  
-syntax on           " 语法高亮  
-autocmd InsertLeave * se nocul  " 用浅色高亮当前行  
-autocmd InsertEnter * se cul    " 用浅色高亮当前行  
-"set ruler           " 显示标尺  
-set showcmd         " 输入的命令显示出来，看的清楚些  
-set novisualbell    " 不要闪烁(不明白)  
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容  
-set laststatus=1    " 启动显示状态行(1),总是显示状态行(2)  
-set nocompatible  "去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限  
-" 显示中文帮助
-if version >= 603
-	set helplang=cn
-	set encoding=utf-8
-endif
-
-set pastetoggle=<F4>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"键盘命令
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-nmap <leader>w :w!<cr>
-nmap <leader>f :find<cr>
-
-" 映射全选+复制 ctrl+a
-" map <C-A> ggVGY
-" map! <C-A> <Esc>ggVGY
-map <F12> gg=G
-" 选中状态下 Ctrl+c 复制
-vmap <C-c> "+y
-"去空行  
-nnoremap <F2> :g/^\s*$/d<CR> 
-"比较文件  
-nnoremap <C-F2> :vert diffsplit 
-"新建标签  
-map <M-F2> :tabnew<CR>  
-"列出当前目录文件  
-map <F3> :tabnew .<CR>  
-"打开树状文件目录  
-map <C-F3> \be  
-"C，C++ 按F5编译运行
-map <F5> :call CompileRunGcc()<CR>
-func! CompileRunGcc()
-	exec "w"
-	if &filetype == 'c'
-		exec "!g++ % -o %<"
-		exec "! ./%<"
-	elseif &filetype == 'cpp'
-		exec "!g++ % -o %<"
-		exec "! ./%<"
-	elseif &filetype == 'java' 
-		exec "!javac %" 
-		exec "!java %<"
-	elseif &filetype == 'sh'
-		:!./%
-	elseif &filetype == 'py'
-		exec "!python %"
-		exec "!python %<"
-	endif
-endfunc
-"C,C++的调试
-map <F8> :call Rungdb()<CR>
-func! Rungdb()
-	exec "w"
-	exec "!g++ % -g -o %<"
-	exec "!gdb ./%<"
-endfunc
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""实用设置
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 设置当文件被改动时自动载入
-set autoread
-" quickfix模式
-autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
-"代码补全 
-set completeopt=preview,menu 
-"共享剪贴板  
-set clipboard+=unnamed 
-"从不备份  
-" set nobackup
-"make 运行
-:set makeprg=g++\ -Wall\ \ %
-"自动保存
-set autowrite
-set ruler                   " 打开状态栏标尺
-set cursorline              " 突出显示当前行
-set magic                   " 设置魔术
-set guioptions-=T           " 隐藏工具栏
-set guioptions-=m           " 隐藏菜单栏
-"set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\
-" 设置在状态行显示的信息
-"set foldcolumn=0
-"set foldmethod=indent 
-"set foldlevel=3 
-"set foldenable              " 开始折叠
-" 不要使用vi的键盘模式，而是vim自己的
+" Nocompatible mode, but not the vi compatible mode. Same as 'set nocp'
 set nocompatible
-" 语法高亮
-set syntax=on
-" 去掉输入错误的提示声音
-set noeb
-" 在处理未保存或只读文件的时候，弹出确认
-set confirm
-" 自动缩进
-" set autoindent
-set cindent
-" Tab键的宽度
-"set tabstop=4
-set ts=4
-set expandtab
-set autoindent
-" 统一缩进为4
-set softtabstop=4
-set shiftwidth=4
-" 在行和段开始处使用制表符
-set smarttab
-" 显示行号
-set number
-" 历史记录数
-set history=1000
-"禁止生成临时文件
-" set nobackup
-set noswapfile
-"搜索忽略大小写
-set ignorecase
-"搜索逐字符高亮
-" set hlsearch
-set hls
-set incsearch
-"行内替换
-"set gdefault
-"编码设置
-set enc=utf-8
-set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
-"语言设置
+" load indentation rules and plugins according to the detected filetype
+if has("autocmd")
+    filetype plugin indent on
+endif
+" encoding setting
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,gb2312,gbk,gb18030,big5,latin1
+set fileencoding=utf-8
+set termencoding=utf-8
 set langmenu=zh_CN.UTF-8
 set helplang=cn
-" 我的状态行显示的内容（包括文件类型和解码）
-"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
-"set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%p%%]
-" 总是显示状态行
-set laststatus=2
-" 命令行（在状态行下）的高度，默认为1，这里是2
-set cmdheight=2
-" 侦测文件类型
-filetype on
-" 载入文件类型插件
-filetype plugin on
-" 为特定文件类型载入相关缩进文件
-filetype indent on
-" 保存全局变量
-" 带有如下符号的单词不要被换行分割
-set iskeyword+=_,$,@,%,#,-
-" 字符间插入的像素行数目
-set linespace=0
-" 增强模式中的命令行自动完成操作
+" show a preview of the first match based on the search field
+set incsearch
+" High light search. Same as 'set hls'
+set hlsearch
+" shortcut to mute search highlighting
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+" mapping for counting the last pattern
+nnoremap <silent> ,* :%s///gn<CR>
+" Ignore case, while 'set noignorecase' option is case sensitivity
+set ignorecase
+" Display the line number
+set number
+" Automatic indent
+set autoindent
+" Use 4 spaces for a <Tab> key
+set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+" Set the number of command-lines history
+set history=1000
+" command-line completion operates in an enhanced mode
 set wildmenu
-" 使回格键（backspace）正常处理indent, eol, start等
-set backspace=2
-" 允许backspace和光标键跨越行边界
-set whichwrap+=<,>,h,l
-" 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
+" Completion mode that similar to bash shell
+set wildmode=list,full
+" set complete-=k complete+=k
+" navigate away from a modified file without first saving it.
+set hidden
+" enable mouse in all modes
 set mouse=a
-set selection=exclusive
-set selectmode=mouse,key
-" 通过使用: commands命令，告诉我们文件的哪一行被改变过
-set report=0
-" 在被分割的窗口间显示空白，便于阅读
-set fillchars=vert:\ ,stl:\ ,stlnc:\
-" 高亮显示匹配的括号
+" show (partial) command in status line
+set showcmd
+" show matching brackets
 set showmatch
-" 匹配括号高亮的时间（单位是十分之一秒）
-set matchtime=1
-" 光标移动到buffer的顶部和底部时保持3行距离
-set scrolloff=3
-" 为C程序提供自动缩进
-set smartindent
-" 高亮显示普通txt文件（需要txt.vim脚本）
-au BufRead,BufNewFile *  setfiletype txt
-"自动补全
-:inoremap ( ()<ESC>i
-:inoremap ) <c-r>=ClosePair(')')<CR>
-":inoremap { {<CR>}<ESC>O
-":inoremap } <c-r>=ClosePair('}')<CR>
-:inoremap [ []<ESC>i
-:inoremap ] <c-r>=ClosePair(']')<CR>
-:inoremap " ""<ESC>i
-:inoremap ' ''<ESC>i
-function! ClosePair(char)
-	if getline('.')[col('.') - 1] == a:char
-		return "\<Right>"
-	else
-		return a:char
-	endif
-endfunction
-filetype plugin indent on 
-"打开文件类型检测, 加了这句才可以用智能补全
-set completeopt=longest,menu
+" automatically save before commands like :next and :make
+set autowrite
+" highlight the screen line of the cursor
+set cursorline
+" show the line and column number of the cursor position
+set ruler
+" options for the status line
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
+set laststatus=2
+" number of screen lines to use for the command-line
+set cmdheight=2
+" disable the bell for error messages
+set noerrorbells
 
-au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set spell
+" Scan spell dictionaries for completion in addition to standard places
+set complete+=k
 
-autocmd FileType python,shell,coffee set commentstring=#\ %s
-autocmd FileType java,c,cpp set commentstring=//\ %s
+set pastetoggle=<F4>
+" add all subdirectories beneath current directory to path,
+" so that we can find any file beneath current directory.
+set path+=./**
+
+" customer the grep in vim, ignore some files
+" set grepprg=grep\ -nrs\ --exclude={*.o,*.patch,*.obj,*~,*.pyc,tags}\ --exclude-dir={.git,.svn}\ $*
+"
+" need to install ack-grep first, as:
+" sudo apt-get install ack-grep
+" sudo ln -s /usr/bin/ack-grep /usr/local/bin/ack
+set grepprg=ack\ --nogroup\ --column\ $*\ --ignore-file=is:tags\ --ignore-file=ext:patch
+set grepformat=%f:%l:%c:%m
+
+
+" mapping <C-p> and <C-n> to <Up> and <Down> so that they can filter the
+" command-lines history
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <expr> %% getcmdtype( ) == ':' ? expand('%:h').'/' : '%%'
+
+" mapping F5 key to update the tags
+nnoremap <f5> :!ctags -R<CR>
+
+" mapping & as :&& to preserves substitute flags in normal mode
+nnoremap & :&&<CR>
+" mapping & as :&& to preserves substitute flags in visual mode
+xnoremap & :&&<CR>
+
+" mapping for scrolling through the buffer lists
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
+" mapping for scrolling through the args lists
+nnoremap <silent> [a :aprevious<CR>
+nnoremap <silent> ]a :anext<CR>
+nnoremap <silent> [A :afirst<CR>
+nnoremap <silent> ]A :alast<CR>
+" mapping for scrolling through the quickfix lists
+nnoremap <silent> [q :qprevious<CR>
+nnoremap <silent> ]q :qnext<CR>
+nnoremap <silent> [Q :qfirst<CR>
+nnoremap <silent> ]Q :qlast<CR>
+" mapping for scrolling through the location lists
+nnoremap <silent> [l :lprevious<CR>
+nnoremap <silent> ]l :lnext<CR>
+nnoremap <silent> [L :lfirst<CR>
+nnoremap <silent> ]L :llast<CR>
+" mapping for scrolling through the tag lists
+nnoremap <silent> [t :tprevious<CR>
+nnoremap <silent> ]t :tnext<CR>
+nnoremap <silent> [T :tfirst<CR>
+nnoremap <silent> ]T :tlast<CR>
+" mapping for scrolling through the quickfix lists
+nnoremap <silent> [c :cprevious<CR>
+nnoremap <silent> ]c :cnext<CR>
+nnoremap <silent> [C :cfirst<CR>
+nnoremap <silent> ]C :clast<CR>
+
+" customize compile command for different file type
+autocmd fileType python setlocal makeprg=python3\ %
+autocmd FileType c setlocal makeprg=gcc\ -lm\ -pthread\ -g\ %\ -o\ %<
+autocmd FileType cpp setlocal makeprg=g++\ -lm\ -pthread\ -g\ %\ -o\ %<
+
+" jump to the last position when reopening a file
+if has("autocmd")
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+" enables syntax highlighting
+if has("syntax")
+    syntax on
+endif
+
+
