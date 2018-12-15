@@ -1,4 +1,4 @@
-" Nocompatible mode, but not the vi compatible mode. Same as 'set nocp'
+" nocompatible mode, but not the vi compatible mode. same as 'set nocp'
 set nocompatible
 " load indentation rules and plugins according to the detected filetype
 if has("autocmd")
@@ -13,25 +13,27 @@ set langmenu=zh_CN.UTF-8
 set helplang=cn
 " show a preview of the first match based on the search field
 set incsearch
-" High light search. Same as 'set hls'
+" high light search. same as 'set hls'
 set hlsearch
 " shortcut to mute search highlighting
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 " mapping for counting the last pattern
 nnoremap <silent> ,* :%s///gn<CR>
-" Ignore case, while 'set noignorecase' option is case sensitivity
+" ignore case, while 'set noignorecase' option is case sensitivity
 set ignorecase
-" Display the line number
+" display the line number
 set number
-" Automatic indent
+" automatic indent
 set autoindent
-" Use 4 spaces for a <Tab> key
+" auto indent for C program
+set cindent
+" use 4 spaces for a <Tab> key
 set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
-" Set the number of command-lines history
+" set the number of command-lines history
 set history=1000
 " command-line completion operates in an enhanced mode
 set wildmenu
-" Completion mode that similar to bash shell
+" completion mode that similar to bash shell
 set wildmode=list,full
 " set complete-=k complete+=k
 " navigate away from a modified file without first saving it.
@@ -53,11 +55,16 @@ set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strf
 set laststatus=2
 " number of screen lines to use for the command-line
 set cmdheight=2
+set magic
+" prompt to save or abandon buffer
+set confirm
+" auto read file that has been changed
+set autoread
 " disable the bell for error messages
 set noerrorbells
 
 " set spell
-" Scan spell dictionaries for completion in addition to standard places
+" scan spell dictionaries for completion in addition to standard places
 set complete+=k
 
 set pastetoggle=<F4>
@@ -135,4 +142,50 @@ if has("syntax")
     syntax on
 endif
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" auto match start
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! AutoPair(open, close)
+    let line = getline('.')
+    if col('.') > strlen(line) || line[col('.') - 1] == ' '
+        return a:open.a:close."\<ESC>i"
+    else
+        return a:open
+    endif
+endfunction
+
+function! ClosePair(char)
+    if getline('.')[col('.') - 1] == a:char
+        return "\<Right>"
+    else
+        return a:char
+    endif
+endfunction
+
+function! SamePair(char)
+    let line = getline('.')
+    if col('.') > strlen(line) || line[col('.') - 1] == ' '
+        return a:char.a:char."\<ESC>i"
+    elseif line[col('.') - 1] == a:char
+        return "\<Right>"
+    else
+        return a:char
+    endif
+endfunction
+
+inoremap ( <c-r>=AutoPair('(', ')')<CR>
+inoremap ) <c-r>=ClosePair(')')<CR>
+inoremap { <c-r>=AutoPair('{', '}')<CR>
+inoremap } <c-r>=ClosePair('}')<CR>
+inoremap [ <c-r>=AutoPair('[', ']')<CR>
+inoremap ] <c-r>=ClosePair(']')<CR>
+inoremap < <c-r>=AutoPair('<', '>')<CR>
+inoremap > <c-r>=ClosePair('>')<CR>
+inoremap " <c-r>=SamePair('"')<CR>
+inoremap ' <c-r>=SamePair("'")<CR>
+inoremap ` <c-r>=SamePair('`')<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" auto match end
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
