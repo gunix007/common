@@ -1,9 +1,59 @@
 " nocompatible mode, but not the vi compatible mode. same as 'set nocp'
 set nocompatible
+" required for vundle vim
+filetype off
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+" call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+
+" plugin on GitHub repo
+" Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
+Plugin 'kien/ctrlp.vim'
+" Plugin 'Valloric/YouCompleteMe'
+
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+
+" Git plugin not hosted on GitHub
+" Plugin 'git://git.wincent.com/command-t.git'
+
+" git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()                   " required for vundle vim
 " load indentation rules and plugins according to the detected filetype
-if has("autocmd")
-    filetype plugin indent on
-endif
+filetype plugin indent on           " required for vundle vim
+" To ignore plugin indent changes, instead use:
+" filetype plugin on
+
+" Brief help
+" :PluginList           - lists configured plugins
+" :PluginInstall        - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo     - searches for foo; append `!` to refresh local cache
+" :PluginClean          - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 " encoding setting
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,gb2312,gbk,gb18030,big5,latin1
@@ -188,4 +238,10 @@ inoremap ` <c-r>=SamePair('`')<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ auto match end
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Tagbar
+let g:tagbar_width=35
+let g:tagbar_autofocus=1
+let g:tagbar_left = 1
+nmap <F3> :TagbarToggle<CR>
 
