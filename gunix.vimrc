@@ -1,7 +1,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""" vundle start
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nocompatible mode, but not the vi compatible mode. same as 'set nocp'
+" nocompatible mode, but not the vi compatible mode
 set nocompatible
 " required for vundle vim
 filetype off
@@ -20,8 +20,9 @@ Plugin 'VundleVim/Vundle.vim'
 " plugin on GitHub repo
 " Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'majutsushi/tagbar'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 " Plugin 'Valloric/YouCompleteMe'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
@@ -89,7 +90,7 @@ set cindent
 " use 4 spaces for a <Tab> key
 set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 " set the number of command-lines history
-set history=1000
+set history=256
 " command-line completion operates in an enhanced mode
 set wildmenu
 " completion mode that similar to bash shell
@@ -246,14 +247,63 @@ inoremap > <c-r>=ClosePair('>')<CR>
 inoremap " <c-r>=SamePair('"')<CR>
 inoremap ' <c-r>=SamePair("'")<CR>
 inoremap ` <c-r>=SamePair('`')<CR>
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""" auto match end
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Tagbar
-let g:tagbar_width=35
-let g:tagbar_autofocus=1
-let g:tagbar_left = 1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""" nerdtree config start
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" open NERDTree automatically when vim starts up
+" autocmd vimenter * NERDTree
+" open NERDTree automatically when vim starts up if no files were specified
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" open NERDTree automatically when vim starts up on opening a directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" map <F2> to open NERDTree
+map <F2> :NERDTreeToggle<CR>
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" show line number
+let NERDTreeShowLineNumbers=1
+" ignore files
+" let NERDTreeIgnore=['\~$','\.pyc',\.swp']
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""" nerdtree config end
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""" tagbar config start
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:tagbar_width=35
+" let g:tagbar_autofocus=1
+" let g:tagbar_left = 1
 nmap <F3> :TagbarToggle<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""" tagbar config end
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""" ctrlp config start
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Change the default mapping and the default command to invoke CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+" set local working directory when starting without directory
+let g:ctrlp_working_path_mode = 'ra'
+" ignore option
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+    \ 'file': '\v\.(exe|so|dll)$',
+    \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+    \ }
+" customize file listing command
+let g:ctrlp_user_command = 'find %s -type f'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""" ctrlp config end
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
