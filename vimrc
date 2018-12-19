@@ -75,6 +75,8 @@ set helplang=cn
 set incsearch
 " high light search. same as 'set hls'
 set hlsearch
+" mini number of screen lines to keep above and below the cursor
+set scrolloff=3
 " shortcut to mute search highlighting
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 " mapping for counting the last pattern
@@ -140,7 +142,6 @@ set path+=./**
 " sudo ln -s /usr/bin/ack-grep /usr/local/bin/ack
 set grepprg=ack\ --nogroup\ --column\ $*\ --ignore-file=is:tags\ --ignore-file=ext:patch
 set grepformat=%f:%l:%c:%m
-
 
 " mapping <C-p> and <C-n> to <Up> and <Down> so that they can filter the
 " command-lines history
@@ -277,9 +278,7 @@ let NERDTreeShowLineNumbers=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""" tagbar config start
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:tagbar_width=35
-" let g:tagbar_autofocus=1
-" let g:tagbar_left = 1
+let g:tagbar_width=30
 nmap <F3> :TagbarToggle<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""" tagbar config end
