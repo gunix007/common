@@ -64,6 +64,9 @@ filetype plugin indent on           " required for vundle vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""" basic setting start
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" map the leader key and remap the revert character search command
+let mapleader=","
+noremap \ ,
 " encoding setting
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,gb2312,gbk,gb18030,big5,latin1
@@ -80,7 +83,7 @@ set scrolloff=3
 " shortcut to mute search highlighting
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 " mapping for counting the last pattern
-nnoremap <silent> ,* :%s///gn<CR>
+nnoremap <silent> <Leader>* :%s///gn<CR>
 " ignore case, while 'set noignorecase' option is case sensitivity
 set ignorecase
 " display the line number
@@ -262,7 +265,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " show line number
 let NERDTreeShowLineNumbers=1
 " ignore files
-let NERDTreeIgnore=['\~$','\.pyc',\.swp']
+let NERDTreeIgnore=['\~$','\.pyc$','\.swp$']
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""" nerdtree config end
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
