@@ -218,15 +218,6 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""" auto match start
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! AutoPair(open, close)
-    let line = getline('.')
-    if col('.') > strlen(line) || line[col('.') - 1] == ' '
-        return a:open.a:close."\<ESC>i"
-    else
-        return a:open
-    endif
-endfunction
-
 function! ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
         return "\<Right>"
@@ -235,28 +226,16 @@ function! ClosePair(char)
     endif
 endfunction
 
-function! SamePair(char)
-    let line = getline('.')
-    if col('.') > strlen(line) || line[col('.') - 1] == ' '
-        return a:char.a:char."\<ESC>i"
-    elseif line[col('.') - 1] == a:char
-        return "\<Right>"
-    else
-        return a:char
-    endif
-endfunction
-
-inoremap ( <c-r>=AutoPair('(', ')')<CR>
+inoremap ( ()<ESC>i
 inoremap ) <c-r>=ClosePair(')')<CR>
-inoremap { <c-r>=AutoPair('{', '}')<CR>
+inoremap { {<CR>}<ESC>O
 inoremap } <c-r>=ClosePair('}')<CR>
-inoremap [ <c-r>=AutoPair('[', ']')<CR>
+inoremap [ []<ESC>i
 inoremap ] <c-r>=ClosePair(']')<CR>
-inoremap < <c-r>=AutoPair('<', '>')<CR>
+inoremap < <><ESC>i
 inoremap > <c-r>=ClosePair('>')<CR>
-inoremap " <c-r>=SamePair('"')<CR>
-inoremap ' <c-r>=SamePair("'")<CR>
-inoremap ` <c-r>=SamePair('`')<CR>
+inoremap " ""<ESC>i
+inoremap ' ''<ESC>i
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""" auto match end
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
