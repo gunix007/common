@@ -142,6 +142,15 @@ set path+=./**
 " sudo ln -s /usr/bin/ack-grep /usr/local/bin/ack
 set grepprg=ack\ --nogroup\ --column\ $*\ --ignore-file=is:tags\ --ignore-file=ext:patch
 set grepformat=%f:%l:%c:%m
+" the silver searcher
+if executable('ag')
+    " use ag over grep
+    set grepprg=ag\ --nogroup\ --nocolor
+    " use ag in ctrlp for listing files. lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    " ag is fast enough that ctrlp doesn't need to cache
+    let g:ctrlp_use_caching = 0
+endif
 
 " mapping <C-p> and <C-n> to <Up> and <Down> so that they can filter the
 " command-lines history
@@ -255,6 +264,10 @@ inoremap ` <c-r>=SamePair('`')<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""" nerdtree config start
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set the size of the nerd tree
+" let NERDTreeWinSize=20
+" set the position of nerd tree
+" let NERDTreeWinPos="right"
 " open NERDTree automatically when vim starts up
 " autocmd vimenter * NERDTree
 " open NERDTree automatically when vim starts up if no files were specified
@@ -270,7 +283,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " show line number
 let NERDTreeShowLineNumbers=1
 " ignore files
-" let NERDTreeIgnore=['\~$','\.pyc',\.swp']
+let NERDTreeIgnore=['\~$','\.pyc',\.swp']
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""" nerdtree config end
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -278,7 +291,7 @@ let NERDTreeShowLineNumbers=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""" tagbar config start
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:tagbar_width=30
+let g:tagbar_width=31
 nmap <F3> :TagbarToggle<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""" tagbar config end
