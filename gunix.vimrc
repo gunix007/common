@@ -19,7 +19,10 @@ Plugin 'VundleVim/Vundle.vim'
 
 " plugin on GitHub repo
 " Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
 Plugin 'scrooloose/nerdtree'
+" Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'majutsushi/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -300,4 +303,12 @@ let g:ctrlp_user_command = 'find %s -type f'
 """""""""""""""""" ctrlp config end
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""" vim-commentary config start
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType python,shell set commentstring=#\ %s
+autocmd FileType java,c,cpp set commentstring=//\ %s
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""" vim-commentary config end
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
