@@ -27,6 +27,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'majutsushi/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
 " Plugin 'Valloric/YouCompleteMe'
+" Plugin 'altercation/vim-colors-solarized'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
@@ -310,5 +311,15 @@ autocmd FileType python,shell set commentstring=#\ %s
 autocmd FileType java,c,cpp set commentstring=//\ %s
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""" vim-commentary config end
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""" vim-colors-solarized config start
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" syntax enable
+" set background=dark
+" colorscheme solarized
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""" vim-colors-solarized config end
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
