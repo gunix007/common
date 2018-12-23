@@ -71,6 +71,33 @@ filetype plugin indent on           " required for vundle vim
 " map the leader key and remap the revert character search command
 let mapleader=","
 noremap \ ,
+" map shortcut key for system clipboard in visual mode
+vnoremap <Leader>y "+y
+nmap <Leader>p "+p
+" split current window in two horizontally
+nnoremap <Leader>ws <C-W>s
+" split current window in two vertically
+nnoremap <Leader>wv <C-W>v
+" jump to the next window
+nnoremap <Leader>ww <C-W>w
+" jump to the left window
+nnoremap <Leader>wh <C-W>h
+" jump to the right window
+nnoremap <Leader>wl <C-W>l
+" jump to the below window
+nnoremap <Leader>wj <C-W>j
+" jump to the above window
+nnoremap <Leader>wk <C-W>k
+" close the current window
+nnoremap <Leader>wc <C-W>c
+" make the current window the only one on the screen
+nnoremap <Leader>wo <C-W>o
+" jump to the match item
+nmap <Leader>m %
+" do not create backup file
+set nobackup
+" do not create swap file
+set noswapfile
 " encoding setting
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,gb2312,gbk,gb18030,big5,latin1
@@ -209,6 +236,11 @@ autocmd fileType python setlocal makeprg=python3\ %
 autocmd FileType c setlocal makeprg=gcc\ -lm\ -pthread\ -g\ %\ -o\ %<
 autocmd FileType cpp setlocal makeprg=g++\ -lm\ -pthread\ -g\ %\ -o\ %<
 
+" auto sources vimrc when save it
+if has("autocmd")
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+endif
+
 " jump to the last position when reopening a file
 if has("autocmd")
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -299,7 +331,7 @@ let g:ctrlp_custom_ignore = {
     \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
     \ }
 " customize file listing command
-let g:ctrlp_user_command = 'find %s -type f'
+" let g:ctrlp_user_command = 'find %s -type f'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""" ctrlp config end
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
