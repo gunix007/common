@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <sys/statfs.h>
 
-int get_disk_usage(char *path, float *usage)
+int get_disk_usage(const char *path, float *usage)
 {
     struct statfs vfs;
 
@@ -23,7 +23,7 @@ int get_disk_usage(char *path, float *usage)
     return 0;
 }
 
-int main(int argc, char *argv[])
+int main(void)
 {
     int ret = 0;
     float usage = 0.0;

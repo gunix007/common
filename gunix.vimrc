@@ -27,7 +27,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'majutsushi/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bronson/Vim-trailing-whitespace'
 
@@ -368,4 +368,7 @@ silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""" Vim-repeat config end
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:ycm_server_python_interpreter = '/usr/bin/python'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 
