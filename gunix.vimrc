@@ -21,13 +21,15 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/Vim-repeat'
 Plugin 'scrooloose/nerdtree'
 " Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'majutsushi/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
 " Plugin 'Valloric/YouCompleteMe'
-" Plugin 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'bronson/Vim-trailing-whitespace'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
@@ -238,7 +240,7 @@ autocmd FileType cpp setlocal makeprg=g++\ -lm\ -pthread\ -g\ %\ -o\ %<
 
 " auto sources vimrc when save it
 if has("autocmd")
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+    autocmd BufWritePost .vimrc source %
 endif
 
 " jump to the last position when reopening a file
@@ -348,10 +350,22 @@ autocmd FileType java,c,cpp set commentstring=//\ %s
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""" vim-colors-solarized config start
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" syntax enable
-" set background=dark
+syntax enable
+set background=dark
 " colorscheme solarized
+" colorscheme desert
+" colorscheme koehler
+" colorscheme industry
+colorscheme elflord
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""" vim-colors-solarized config end
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""" Vim-repeat config start
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""" Vim-repeat config end
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
