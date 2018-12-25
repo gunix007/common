@@ -369,6 +369,12 @@ silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 """""""""""""""""" Vim-repeat config end
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""" youcompleteme config start
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""" youcompleteme config end
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
