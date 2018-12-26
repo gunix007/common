@@ -374,6 +374,19 @@ silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+" turn off/on YCM's diagnostic display features
+let g:ycm_show_diagnostics_ui = 0
+" show the completion menu even when typing inside comments.
+" let g:ycm_complete_in_comments = 1
+" don't show the confirm when loading config
+" g:ycm_confirm_extra_conf = 0
+" collect identifiers from tags files
+" let g:ycm_collect_identifiers_from_tags_files = 1
+" seed identifier database with the keywords of the programming language
+" let g:ycm_seed_identifiers_with_syntax = 1
+" nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+" nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+" nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""" youcompleteme config end
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
