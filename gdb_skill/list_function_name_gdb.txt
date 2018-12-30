@@ -1,0 +1,10 @@
+We can use "info functions" command to list all the function name of the executable file as:
+(gdb) info functions
+or we can just list the functions that match the regular expression as:
+(gdb) info functions regex
+e.g.
+(gdb) info functions thre*
+
+
+
+
