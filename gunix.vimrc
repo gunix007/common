@@ -137,7 +137,7 @@ set wildmode=list,full
 " navigate away from a modified file without first saving it.
 set hidden
 " enable mouse in all modes
-set mouse=a
+" set mouse=a
 " show (partial) command in status line
 set showcmd
 " show matching brackets
@@ -201,6 +201,11 @@ nnoremap <f5> :!ctags -R<CR>
 nnoremap & :&&<CR>
 " mapping & as :&& to preserves substitute flags in visual mode
 xnoremap & :&&<CR>
+
+" imformation from: help e526
+set viminfo='50,<1000
+" '50       Marks will be remembered for the last 50 files you edited.
+" <1000     Contents of registers (up to 1000 lines each) will be remembered.
 
 " mapping for scrolling through the buffer lists
 nnoremap <silent> [b :bprevious<CR>
@@ -373,6 +378,8 @@ silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 """""""""""""""""" youcompleteme config start
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ycm_server_python_interpreter = '/usr/bin/python'
+let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 " turn off/on YCM's diagnostic display features
 let g:ycm_show_diagnostics_ui = 0

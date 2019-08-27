@@ -1,0 +1,30 @@
+{
+  "code": "000000",
+  "msg": "Success",
+  "opDeviceParameter": {
+      "operationType": "M",
+      "commonParameter": {
+        "tacPeriod": 120,
+        "bandWidth": 3,
+        "tac": 26809,
+        "redirected_earfcn": 38400,
+        "syncMode": 0,
+        "imsiReportInterval": 0,
+        "radioSwitch": 1
+      },
+      "Frequency": {
+          "upFrequency": 38950,
+          "downFrequency": 38950,
+          "priority": 0,
+          "rsrp": 0,
+          "pci": 5,
+          "plmn": [
+            "460.00",
+            "460.00",
+            "460.00"
+          ],
+          "frameOffset": 0,
+          "powerLevel": 0
+      }
+    }
+}
