@@ -1,0 +1,89 @@
+
+struct timeval {
+    long tv_sec;        /* seconds */
+    long tv_usec;       /* microseconds */
+};
+
+struct timespec {
+    long tv_sec;        /* seconds */
+    long tv_nsec;       /* nanoseconds */
+};
+
+int select(int maxfdp1, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout);
+
+int pselect(int maxfdp1, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, const struct timespec *timeout, const sigset_t *sigmask);
+
+select()和pselect() 允许程序监控多个文件描述符，直到其中的某个或某些文件描述符已经准备好进行读、写或者异常等类型的I/O操作。当一个文件描述符可进行对应的I/O操作时（即无阻塞读或者写等）即被认为是已经准备好的。
+
+三个独立的文件描述符集被观察是否准备好，其中readfds参数表示可无阻塞读的文件描述符，writefds参数表示可进行无阻塞写的文件描述符，exceptfds参数表示出现异常条件的文件描述符。
+若其中的某个参数被指定成NULL，则表示没有相应的事件需要被观察。
+
+On exit, each of the file descriptor sets is modified in place to indicate which file descriptors actually changed status. (Thus, if using select() within a loop, the sets must be reinitialized before each call.)
+
+Four macros are provided to manipulate the sets. FD_ZERO() clears a set. FD_SET() and FD_CLR() respectively add and remove a given file descriptor from a set. FD_ISSET() tests to see if a file descriptor is part of the set; this is useful after select() returns.
+
+The timeout argument specifies the interval that select() should block waiting for a file descriptor to become ready. The call will block until either:
+(i) a file descriptor becomes ready;
+(ii) the call is interrupted by a signal handler;
+(iii) the timeout expires.
+
+The operation of select() and pselect() is identical, other than these three differences:
+(i) select() uses a timeout that is a struct timeval (with seconds and microseconds), while pselect() uses a struct timespec (with seconds and nanoseconds).
+(ii) select() may update the timeout argument to indicate how much time was left. pselect() does not change this argument.
+(iii) select() has no sigmask argument, and behaves as pselect() called with NULL sigmask.
+
+If both fields of the timeval structure are zero, then select() returns immediately. (This is useful for polling.) If timeout is NULL (no timeout), select() can block indefinitely.
+
+sigmask is a pointer to a signal mask; if it is not NULL, then pselect() first replaces the current signal mask by the one pointed to by sigmask, then does the "select" function, and then restores the original signal mask.
+
+The reason that pselect() is needed is that if one wants to wait for either a signal or for a file descriptor to become ready, then an atomic test is needed to prevent race conditions.
+
+calls select() with all three sets empty, nfds zero, and a non-NULL timeout is a fairly portable way to sleep with subsecond precision.
+
+On success, select() and pselect() return the number of file descriptors contained in the three returned descriptor sets (that is, the total number of bits that are set inreadfds, writefds, exceptfds) which may be zero if the timeout expires before anything interesting happens.
+
+1. select() can monitor only file descriptors numbers that are less than FD_SETSIZE. poll() does not have this limitation.
+
+struct pollfd {
+    int fd;             /* file descriptor */
+    short events;       /* requested events */
+    short revents;      /* returned events */
+};
+
+int poll(struct pollfd *fds, nfds_t nfds, int timeout);
+
+poll() performs a similar task to select(); it waits for one of a set of file descriptors to become ready to perform I/O.
+
+nfds是fds数组中元素个数.
+
+epoll API
+    int epoll_create(int size);
+    int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);
+    int epoll_wait(int epfd, struct epoll_event *events, int maxevents, int timeout);
+
+    typedef union epoll_data {
+        void *ptr;
+        int fd;
+        uint32_t u32;
+        uint64_t u64;
+    } epoll_data_t;
+
+    struct epoll_event {
+        uint32_t events;        /* Epoll events */
+        epoll_data_t data;      /* User data variable */
+    };
+
+    The epoll_wait() system call waits for events on the epoll() instance referred to by the file descriptor epfd. The memory area pointed to by events will contain the events that will be available for the caller.
+
+epoll()工作模式
+    epoll对文件描述符的操作有两种模式：LT（level trigger）和ET（edge trigger）。LT模式是默认模式，LT模式与ET模式的区别如下：
+    LT模式:
+        当epoll_wait检测到描述符事件发生并将此事件通知应用程序，应用程序可以不立即处理该事件。下次调用epoll_wait时，会再次响应应用程序并通知此事件。
+
+    ET模式:
+        当epoll_wait检测到描述符事件发生并将此事件通知应用程序，应用程序必须立即处理该事件。如果不处理，下次调用epoll_wait时，不会再次响应应用程序并通知此事件。
+
+    ET模式在很大程度上减少了epoll事件被重复触发的次数，因此效率要比LT模式高。epoll工作在ET模式的时候，必须使用非阻塞套接口，以避免由于一个文件句柄的阻塞读/阻塞写操作把处理多个文件描述符的任务饿死。
+
+
+
