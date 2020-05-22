@@ -13,7 +13,7 @@
 #define PORT            8080
 #define MAX_SIZE        1024
 #define LISTEN_QUEUE    128
-#define FD_SIZE         1000
+#define FD_SIZE         1
 #define EPOLL_EVENTS    1024
 
 /* create socket and bind */
@@ -26,7 +26,7 @@ static int socket_bind(const char *ip, int port)
     listen_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (listen_fd == -1)
     {
-        perror("socket error:");
+        perror("socket error:\n");
         exit(1);
     }
     bzero(&server_addr, sizeof(server_addr));
@@ -37,7 +37,7 @@ static int socket_bind(const char *ip, int port)
     setsockopt(listen_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
     if (bind(listen_fd, (struct sockaddr *)&server_addr, sizeof(server_addr)) == -1)
     {
-        perror("bind error: ");
+        perror("bind error:\n");
         exit(1);
     }
 
@@ -62,7 +62,7 @@ static void handle_accpet(int epoll_fd, int listen_fd)
     client_fd = accept(listen_fd, (struct sockaddr *)&client_addr, &client_addr_len);
     if (client_fd == -1)
     {
-        perror("accpet error:");
+        perror("accpet error:\n");
     }
     else
     {
@@ -96,7 +96,7 @@ static void do_read(int epoll_fd, int fd, char *buf)
     read_byte = read(fd, buf, MAX_SIZE);
     if (read_byte == -1)
     {
-        perror("read error:");
+        perror("read error:\n");
         close(fd);
         delete_event(epoll_fd, fd, EPOLLIN);
     }
@@ -108,7 +108,7 @@ static void do_read(int epoll_fd, int fd, char *buf)
     }
     else
     {
-        printf("read message is: %s", buf);
+        printf("read message is: %s\n", buf);
         modify_event(epoll_fd, fd, EPOLLOUT);
     }
 }
